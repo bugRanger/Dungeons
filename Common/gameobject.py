@@ -1,7 +1,5 @@
 class GameObject:
-	__name = ''
-	__desc =''
-	def __init__(self, name='', desc=''):
+	def __init__(self, name : str ='', desc : str =''):
 		self.__name = name
 		self.__desc = desc
 		

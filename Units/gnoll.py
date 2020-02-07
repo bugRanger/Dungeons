@@ -1,7 +1,7 @@
 from gameunit import GameUnit
 from unitrace import UnitRace
 
-class Goblin(GameUnit):
+class Gnoll(GameUnit):
 	def __init__(self, name : str =''):
-		super().__init__(name, UnitRace.Goblin)
+		super().__init__(name, UnitRace.Gnoll)
 		

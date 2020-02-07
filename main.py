@@ -4,9 +4,11 @@ sys.path.append('./units')
 sys.path.append('./common')
 sys.path.append('./common/enums')
 
-from unitfactory import UnitCreator, ConcreateGoblin
-	
-def MakeUnit(creator : UnitCreator, name=''):
-	return creator.Make(name)
+from unitfactory import UnitCreator, ConcreateGnoll
+from namefactory import NameFactory, ConcreateGnollName
 
-print(MakeUnit(ConcreateGoblin()))
+def MakeUnit(creator : UnitCreator, name : NameFactory):
+	return creator.MakeUnit(name.MakeName())
+
+unit = MakeUnit(ConcreateGnoll(), ConcreateGnollName())
+print(unit.Name)

@@ -1,16 +1,13 @@
 from gameobject import GameObject
 from unitrace import UnitRace
 
-class GameUnit(GameObject):
-	__health : int = 1
-	__damage : int = 1
-	__type : UnitRace = None
-	
+class GameUnit(GameObject):	
 	 # Constructor
 	def __init__(self, name : str, type : UnitRace):
 		self.__type=type
-		self.__name=name
-	 
+		super().__init__(name)
+	
+	# Property
 	@property
 	def Health(self) -> int:
 		return self.__health
@@ -23,5 +20,6 @@ class GameUnit(GameObject):
 	def Damage(self) -> int:
 		return self.__damage
 
+	# Methods
 	def IsAlive(self):
 		return self.__health > 0

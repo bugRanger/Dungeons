@@ -6,7 +6,7 @@ class NameFactory(ABC):
     def __init__(self, generator : NameGenerator):
         self.__generator = generator
 
-    def MakeName(self) -> str:
+    def Make(self) -> str:
         return self.__generator.GetRandom()
 
 class ConcreateGnollName(NameFactory):

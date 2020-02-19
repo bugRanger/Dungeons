@@ -2,9 +2,7 @@ from abc import ABC, abstractmethod
 from uid import Uid
 from gameobject import GameObject
 from unitrace import UnitRace
-from unitaction import UnitAction
 from unitstrategy import UnitStrategy
-from combatsession import CombatSession
 
 class GameUnit(GameObject):
 	 # Constructor
@@ -36,14 +34,17 @@ class GameUnit(GameObject):
 	# Methods
 	def IsAlive(self):
 		return self.__health > 0
-		
+	
+	# Bot strategy
 	def SetStrategy(self, value : UnitStrategy):
 		self.__strategy = value
-			
-	def Action(self) -> UnitAction:
-		return self.__strategy.Action(self.Uid)
+		
+	@abstractmethod		
+	def Action(self):
+		# TODO оценить состояние?
+		self.__strategy.Action(self.Uid)
 
-	# To string
+	# ToString
 	def __str__(self):
 		return "{0}: {1}\nHealth: {2}\nDamage: {3}".format(self.__type, self.Name, self.__health, self.__damage)
 		

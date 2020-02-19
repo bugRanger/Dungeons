@@ -4,14 +4,14 @@ from gameunit import GameUnit
 
 class UnitCreator(ABC):
 	@abstractmethod
-	def CreateUnit(self, name : str):
+	def Create(self, name : str):
 		pass
 
-	def MakeUnit(self, name : str) -> GameUnit:
-		return self.CreateUnit(name)
+	def Make(self, name : str) -> GameUnit:
+		return self.Create(name)
 
 class ConcreateGnoll(UnitCreator):
-	def CreateUnit(self, name : str) -> Gnoll:
+	def Create(self, name : str) -> Gnoll:
 		# TODO Table of unit hp/dmg.
 		return Gnoll(name, '', 12, 2)
 		

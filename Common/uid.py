@@ -5,7 +5,7 @@ class Uid():
 		self.__uid = uuid4()
 	
 	def __repr__(self):
-		return self.__uid
+		return str(self.__uid)
 	
 	def __str__(self):
-		return self.__uid
+		return str(self.__uid)

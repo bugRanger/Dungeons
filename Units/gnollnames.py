@@ -1,24 +1,39 @@
-from random import randint, random
 from namegenerator import NameGenerator
 
 class GnollNames(NameGenerator):
-    def __init__(self):
-        # Syllables
-        self.__first = [ "Ga" , "Der" , "Gre" , "Rem" , "Thu" ]
-        self.__second = [ "mock" , "ror" , "rr" , "mar" , "rrg" ]
-        # Tribalname 
-        self.__third = [ "True" , "Blood" , "Great" , "Spear" , "Thunder" ]
-        self.__fourth = [ "feather", "fist", "fang", "death", "dance" ]
-    
+    # Syllables
+    FIRST_NAME = ["Ga" , "Der" , "Gre" , "Rem" , "Thu"]
+    SECONDS_NAME = ["mock" , "ror" , "rr" , "mar" , "rrg"]
+    # Tribalname 
+    THIRD_NAME = ["True" , "Blood" , "Great" , "Spear" , "Thunder"]
+    FOURTH_NAME = ["feather", "fist", "fang", "death", "dance"]
+    # Tribalname dice roll
+    TRIBALNAME_COUNT_DICE = 2
+    TRIBALNAME_FACETS_DICE = 12
+    LOW_TRIBALNAME_ROLL = 2
+    HIGH_TRIBALNAME_ROLL = 8
+
+    def __init__(self, diceDrop):
+        self.__diceDrop = diceDrop
+	
+    def HasTribalname(self):
+        rng = range(0, self.TRIBALNAME_FACETS_DICE)
+        drop = self.__diceDrop(self.TRIBALNAME_COUNT_DICE, rng)
+        return self.LOW_TRIBALNAME_ROLL < drop < self.HIGH_TRIBALNAME_ROLL
+
     def GetRandom(self) -> str:
-        s1 = randint(0, len(self.__first) - 1)
-        s2 = randint(0, len(self.__second) - 1)
+        def DropForNames(names):
+            dropIndex = self.__diceDrop(1, range(0, len(names)))
+            return names[dropIndex]
+        
+        s1 = DropForNames(self.FIRST_NAME)
+        s2 = DropForNames(self.SECONDS_NAME)
 
-        name = "{0}{1}".format(self.__first[s1], self.__second[s2])
+        name = "{0}{1}".format(s1, s2)
 
-        if 2 < randint(0, 10) < 8:
-            t1 = randint(0, len(self.__third) - 1)
-            t2 = randint(0, len(self.__fourth) - 1)
-            name += " " + self.__third[t1] + self.__fourth[t2]
+        if self.HasTribalname():
+            t1 = DropForNames(self.THIRD_NAME)
+            t2 = DropForNames(self.FOURTH_NAME)
+            name += " " + t1 + t2
 
         return name

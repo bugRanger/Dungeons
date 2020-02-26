@@ -1,6 +1,8 @@
 from abc import ABC, abstractmethod
+from random import randint
 from namegenerator import NameGenerator
 from gnollnames import GnollNames
+from gamedice import GameDice
 
 class NameFactory(ABC):
     def __init__(self, generator : NameGenerator):
@@ -11,4 +13,4 @@ class NameFactory(ABC):
 
 class ConcreateGnollName(NameFactory):
     def __init__(self):
-        super().__init__(GnollNames())
+        super().__init__(GnollNames(GameDice.Drop))

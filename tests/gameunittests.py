@@ -32,15 +32,15 @@ class GameUnitTests(unittest.TestCase):
 		self.assertEqual(race, unit.Race)
 	
 	def test_isalive(self):
-		 #act
-		self.__unit.Health = 1;
+		#act
+		self.__unit.Health = 1
 		
 		#assert
 		self.assertTrue(self.__unit.IsAlive())
 	
 	def test_isnotalive(self):
-		 #act
-		self.__unit.Health -= self.__unit.Health;
+		#act
+		self.__unit.Health -= self.__unit.Health
 		
 		#assert
 		self.assertFalse(self.__unit.IsAlive())
@@ -54,7 +54,7 @@ class GameUnitTests(unittest.TestCase):
 		# act
 		self.__unit.Action()
 		
-		# assert.
+		# assert
 		strategy.Action.assert_called_with(self.__unit.Uid)
 
 if __name__== '__main__':

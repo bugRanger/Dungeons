@@ -9,7 +9,7 @@ class NameFactory(ABC):
         self.__generator = generator
 
     def Make(self) -> str:
-        return self.__generator.GetRandom()
+        return self.__generator.GetName()
 
 class ConcreateGnollName(NameFactory):
     def __init__(self):

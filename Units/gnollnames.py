@@ -21,19 +21,20 @@ class GnollNames(NameGenerator):
         drop = self.__diceDrop(self.TRIBALNAME_COUNT_DICE, rng)
         return self.LOW_TRIBALNAME_ROLL < drop < self.HIGH_TRIBALNAME_ROLL
 
-    def GetRandom(self) -> str:
+    def GetName(self) -> str:
         def DropForNames(names):
             dropIndex = self.__diceDrop(1, range(0, len(names)))
             return names[dropIndex]
         
+        name = ''
         s1 = DropForNames(self.FIRST_NAME)
         s2 = DropForNames(self.SECONDS_NAME)
-
-        name = "{0}{1}".format(s1, s2)
 
         if self.HasTribalname():
             t1 = DropForNames(self.THIRD_NAME)
             t2 = DropForNames(self.FOURTH_NAME)
-            name += " " + t1 + t2
+            name += '{}{} {}{}'.format(s1, s2, t1, t2)
+        else:
+            name = '{}{}'.format(s1, s2)
 
         return name

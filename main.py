@@ -1,14 +1,8 @@
-# import directories
-import sys
-sys.path.append('./units')
-sys.path.append('./common')
-sys.path.append('./common/enums')
-
-from uid import Uid
-from strategyfactory import ConcreateMeleeStrategy
-from unitfactory import UnitCreator, ConcreateGnoll
-from namefactory import NameFactory, ConcreateGnollName
-from combatsession import CombatSession
+from common.uid import Uid
+from common.combatsession import CombatSession
+from unit.strategyfactory import ConcreateMeleeStrategy
+from unit.unitfactory import UnitCreator, ConcreateGnoll
+from unit.namefactory import NameFactory, ConcreateGnollName
 
 def MakeUnit(creator : UnitCreator, name : NameFactory):
 	return creator.Make(name.Make())	

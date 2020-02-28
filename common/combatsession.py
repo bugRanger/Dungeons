@@ -6,7 +6,7 @@ class CombatSession():
 		self.__participants = {}
 		# TODO Поток для действий участников.
 		# self.__actions = ThreadQueue()
-	
+
 	def GetParticipants(self, expression):
 		return list(filter(expression, self.__participants.values()))
 		

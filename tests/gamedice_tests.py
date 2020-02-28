@@ -49,6 +49,6 @@ class GameDiceTest(unittest.TestCase):
 		# assert
 		self.assertLessEqual(perc, 21)
 		self.assertGreaterEqual(perc, 19)
-	
+
 if __name__ == '__main__':
 	unittest.main()

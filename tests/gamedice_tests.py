@@ -34,7 +34,8 @@ class GameDiceTest(unittest.TestCase):
 		# act
 		drop = GameDice.Drop(2, [5, 6])
 		# assert
-		self.assertTrue(10 <= drop <= 12)
+		self.assertLessEqual(drop, 12)
+		self.assertGreaterEqual(drop, 10)
 	
 	def test_dice_drop_for_perc20(self):
 		# arrage

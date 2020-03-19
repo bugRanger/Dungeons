@@ -6,6 +6,7 @@ from common.enums.unitrace import UnitRace
 from common.unitstrategy import UnitStrategy
 
 class GameUnit(GameObject):
+	 # TODO Add UnitStats constructor param.
 	 # Constructor
 	def __init__(self, name : str,  desc : str, health: int, damage: int, race : UnitRace):
 		self.__uid = Uid()

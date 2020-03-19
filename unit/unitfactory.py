@@ -12,8 +12,8 @@ class UnitCreator(ABC):
 		return self.Create(name)
 
 class ConcreateGnoll(UnitCreator):
+	# TODO Add support basic stats for race/unit.
 	def Create(self, name : str) -> Gnoll:
-		# TODO Table of unit hp/dmg.
 		return Gnoll(name, '', 12, 2)
 		
 #class Concreate__(UnitCreator):

@@ -4,15 +4,16 @@ from common.uid import Uid
 from common.gameobject import GameObject
 from common.enums.unitrace import UnitRace
 from common.unitstrategy import UnitStrategy
+from common.unitstats import UnitStats
 
 class GameUnit(GameObject):
 	 # TODO Add UnitStats constructor param.
 	 # Constructor
-	def __init__(self, name : str,  desc : str, health: int, damage: int, race : UnitRace):
+	def __init__(self, name : str,  desc : str, stats : UnitStats, race : UnitRace):
 		self.__uid = Uid()
 		self.__race = race
-		self.__health = health
-		self.__damage = damage
+		self.__health = stats.Health
+		self.__damage = stats.Damage
 		self.__strategy = None
 		super().__init__(name, desc)
 	
@@ -24,15 +25,18 @@ class GameUnit(GameObject):
 	@property
 	def Race(self) -> UnitRace :
 		return self.__race
-		
+	
+	# TODO Change an unit stats.
 	@property
 	def Health(self) -> int:
 		return self.__health
-		
+			
+	# TODO Change an unit stats.
 	@Health.setter
 	def Health(self, value):
 		self.__health = value
-
+	
+	# TODO Change an unit stats.
 	@property
 	def Damage(self) -> int:
 		return self.__damage

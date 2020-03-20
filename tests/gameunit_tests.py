@@ -2,28 +2,31 @@ import unittest
 from unittest.mock import patch
 
 from common.gameunit import GameUnit, UnitRace
+from common.unitstats import UnitStats
 
 class GameUnitTests(unittest.TestCase):
 	def setUp(self):
-		self.__unit = GameUnit('unit', 'desc', 1, 1, 
+		stats = UnitStats()
+		stats.Health = 1
+		stats.Damage = 1
+		self.__unit = GameUnit('unit', 'desc', stats, 
 			UnitRace.Gnoll)
 		
 	def test_unit_init(self):
 		# arrage
+		race = UnitRace.Gnoll
 		name = 'unit'
 		desc = 'desc'
-		health = 1
-		damage = 1
-		race = UnitRace.Gnoll
-		
+		stats = UnitStats()
+		stats.Health = 1
+		stats.Damage = 1
 		# act
-		unit = GameUnit(name, desc, health, damage, race)
-		
+		unit = GameUnit(name, desc, stats, race)
 		# assert
 		self.assertEqual(name, unit.Name)
 		self.assertEqual(desc, unit.Desc)
-		self.assertEqual(health, unit.Health)
-		self.assertEqual(damage, unit.Damage)
+		self.assertEqual(stats.Health, unit.Health)
+		self.assertEqual(stats.Damage, unit.Damage)
 		self.assertEqual(race, unit.Race)
 	
 	def test_unit_isalive(self):

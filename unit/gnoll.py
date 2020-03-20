@@ -1,7 +1,8 @@
 from common.gameunit import GameUnit
+from common.unitstats import UnitStats
 from common.enums.unitrace import UnitRace
 
 class Gnoll(GameUnit):
-	def __init__(self, name : str, desc: str, health: int, damage: int):
-		super().__init__(name, desc, health, damage, UnitRace.Gnoll)
+	def __init__(self, name : str, desc: str, stats: UnitStats):
+		super().__init__(name, desc, stats, UnitRace.Gnoll)
 	# TODO Add specific behaviors

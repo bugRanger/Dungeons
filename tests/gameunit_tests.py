@@ -7,8 +7,8 @@ from common.unitstats import UnitStats
 class GameUnitTests(unittest.TestCase):
 	def setUp(self):
 		stats = UnitStats()
-		stats.Health = 1
-		stats.Damage = 1
+		stats.Health.Value = 5
+		stats.Damage.Value = 5
 		self.__unit = GameUnit('unit', 'desc', stats, 
 			UnitRace.Gnoll)
 		
@@ -18,29 +18,26 @@ class GameUnitTests(unittest.TestCase):
 		name = 'unit'
 		desc = 'desc'
 		stats = UnitStats()
-		stats.Health = 1
-		stats.Damage = 1
+		stats.Health.Value = 5
+		stats.Damage.Value = 5
 		# act
 		unit = GameUnit(name, desc, stats, race)
 		# assert
 		self.assertEqual(name, unit.Name)
 		self.assertEqual(desc, unit.Desc)
-		self.assertEqual(stats.Health, unit.Health)
-		self.assertEqual(stats.Damage, unit.Damage)
+		self.assertEqual(stats, unit.Stats)
 		self.assertEqual(race, unit.Race)
 	
 	def test_unit_isalive(self):
-		#act
-		self.__unit.Health = 1
-		
-		#assert
+		# act
+		self.__unit.Stats.Health.Value = 1
+		# assert
 		self.assertTrue(self.__unit.IsAlive())
 	
 	def test_unit_isnotalive(self):
-		#act
-		self.__unit.Health -= self.__unit.Health
-		
-		#assert
+		# act
+		self.__unit.Stats.Health.Improve(-5)
+		# assert
 		self.assertFalse(self.__unit.IsAlive())
 	
 	@patch('common.unitstrategy.UnitStrategy')
@@ -48,10 +45,8 @@ class GameUnitTests(unittest.TestCase):
 		# arrage
 		strategy = MockStrategy()
 		self.__unit.SetStrategy(strategy)
-		
 		# act
 		self.__unit.Action()
-		
 		# assert
 		strategy.Action.assert_called_with(self.__unit.Uid)
 

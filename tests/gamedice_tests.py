@@ -1,5 +1,6 @@
 import unittest
- 
+import math
+
 from common.gamedice import GameDice
 
 class GameDiceTest(unittest.TestCase):
@@ -46,7 +47,7 @@ class GameDiceTest(unittest.TestCase):
 			drop = GameDice.Drop(1, facets)
 			if drop == 3:
 				perc += 1
-		perc = perc/10000*100
+		perc = math.floor(perc/10000*100)
 		# assert
 		self.assertLessEqual(perc, 21)
 		self.assertGreaterEqual(perc, 19)

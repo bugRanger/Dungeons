@@ -42,6 +42,16 @@ class UnitStatsTest(unittest.TestCase):
 		# Assert
 		self.assertEqual(stat.Value, min)
 
+	def test_health_new_value(self):
+		# Arrage
+		value = 5
+		stat = Health(10)
+		# Act
+		stat.Value = value
+		# Assert
+		self.assertEqual(stat.Value, value)
+		self.assertEqual(stat.Max, value)
+
 	def test_damage_min_value(self):
 		# Arrage
 		min = 1

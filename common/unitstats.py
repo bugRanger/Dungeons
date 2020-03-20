@@ -11,11 +11,18 @@ class BasicStat():
 	@property
 	def Value(self):
 		return self.GetValue()
-		
+	
+	@Value.setter
+	def Value(self, value):
+		self.SetValue(value)
+
 	# Methods
 	def GetValue(self):
 		return self.__value
-		
+	
+	def SetValue(self, value):
+		self.__value = value
+
 	# Override
 	def __str__(self):
 		return str(self.Value)
@@ -77,6 +84,10 @@ class Health(UnitStat):
 		super().__init__(value) 
 		self.Max = value
 
+	def SetValue(self, value):
+		super().SetValue(value)
+		self.Max = value
+
 class Damage(UnitStat):
 	# Constructor
 	def __init__(self, value):
@@ -101,11 +112,17 @@ class UnitStats:
 		self.__critRate = CritRate(5)
 		
 	# Properties
+	@property
 	def Health(self) -> Health:
 		return self.__health
 		
+	@property
 	def Damage(self) -> Damage:
 		return self.__damage
 		
+	@property
 	def CritRate(self) -> CritRate:
 		return self.__critRate
+		
+	def __str__(self):
+		return 'Health: {}\nDamage: {}\nCritRate: {}'.format(self.__health, self.__damage, self.__critRate)

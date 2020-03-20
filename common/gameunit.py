@@ -12,8 +12,7 @@ class GameUnit(GameObject):
 	def __init__(self, name : str,  desc : str, stats : UnitStats, race : UnitRace):
 		self.__uid = Uid()
 		self.__race = race
-		self.__health = stats.Health
-		self.__damage = stats.Damage
+		self.__stats = stats
 		self.__strategy = None
 		super().__init__(name, desc)
 	
@@ -25,25 +24,14 @@ class GameUnit(GameObject):
 	@property
 	def Race(self) -> UnitRace :
 		return self.__race
-	
-	# TODO Change an unit stats.
+
 	@property
-	def Health(self) -> int:
-		return self.__health
-			
-	# TODO Change an unit stats.
-	@Health.setter
-	def Health(self, value):
-		self.__health = value
-	
-	# TODO Change an unit stats.
-	@property
-	def Damage(self) -> int:
-		return self.__damage
+	def Stats(self) -> UnitStats:
+		return self.__stats
 
 	# Methods
 	def IsAlive(self):
-		return self.__health > 0
+		return self.Stats.Health.Value > 0
 	
 	# Bot strategy
 	def SetStrategy(self, value : UnitStrategy):
@@ -52,11 +40,11 @@ class GameUnit(GameObject):
 	@abstractmethod		
 	def Action(self):
 		# TODO Оценить состояние по дизейблам.
-		if self.Health == 0:
+		if self.Stats.Health.Value == 0:
 			return
 		self.__strategy.Action(self.Uid)
 
 	# ToString
 	def __str__(self):
-		return "Uid: {}\n{}: {}\nHealth: {}\nDamage: {}".format(self.Uid, self.__race, self.Name, self.__health, self.__damage)
+		return "Uid: {}\n{}: {}\n{}".format(self.Uid, self.__race, self.Name, self.Stats)
 		

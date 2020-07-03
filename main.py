@@ -16,7 +16,8 @@ combat.AppendUnit(unit)
 
 unit2 = MakeUnit(ConcreateGnoll(), ConcreateGnollName())
 unit2.SetStrategy(ConcreateMeleeStrategy().Make(combat))
-#combat.AppendUnit(unit2)
+combat.AppendUnit(unit2)
+unit2.Stats.Experience.Improve(15)
 
 print(unit)
 unit.Action()

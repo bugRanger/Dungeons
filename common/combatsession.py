@@ -1,15 +1,26 @@
+from typing import Dict
+
 from common.uid import Uid
 from common.gameunit import GameUnit
 
+'''
+	Отслеживание состояния боя, завершение.
+'''
+# TODO Определиться с назначением.
 class CombatSession():
-	def __init__(self):
-		self.__participants = {}
-		# TODO Поток для действий участников.
-		# self.__actions = ThreadQueue()
+	__participants : Dict[Uid, GameUnit] = {}
 	
+	# TODO Поток для действий участников.
+	# __actions = ThreadQueue()
+		
+	
+	# TODO попахиаает высокой связанностью.
 	def GetParticipants(self, expression):
 		return list(filter(expression, self.__participants.values()))
-		
+	
+	def HandleParticipantUpdate(self):
+		pass
+
 	def ContainsUnit(self, uid: Uid):
 		return uid in self.__participants
 		

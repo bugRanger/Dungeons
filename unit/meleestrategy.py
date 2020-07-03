@@ -2,7 +2,11 @@ from common.uid import Uid
 from common.combatsession import CombatSession
 from common.unitstrategy import UnitStrategy
 
+'''
+	Должен содержать только инструкции к исполнению.
+'''
 class MeleeStrategy(UnitStrategy):
+	# TODO remove combat session.
 	def __init__(self, session: CombatSession):
 		self.__session = session
 		self.__target = None

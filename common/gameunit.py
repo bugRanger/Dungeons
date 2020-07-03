@@ -20,7 +20,7 @@ class GameUnit(GameObject):
 	@property
 	def Uid(self) -> Uid :
 		return self.__uid
-		
+
 	@property
 	def Race(self) -> UnitRace :
 		return self.__race
@@ -36,8 +36,8 @@ class GameUnit(GameObject):
 	# Bot strategy
 	def SetStrategy(self, value : UnitStrategy):
 		self.__strategy = value
-		
-	@abstractmethod		
+
+	@abstractmethod
 	def Action(self):
 		# TODO Оценить состояние по дизейблам.
 		if self.Stats.Health.Value == 0:

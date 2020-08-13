@@ -192,12 +192,13 @@ class UnitStats:
 	def CritRate(self) -> CritRate:
 		return self.__critRate
 	
-	def __onLvlUpdated__(self, value):
-		self.UpdateLevel(value)
-		
 	def UpdateLevel(self, value):
-		self.__experience.Max = value * 3 + value
+		pass
 	
+	def __onLvlUpdated__(self, value):
+		self.__experience.Max = value * 3 + value
+		self.UpdateLevel(value)
+
 	def __onExpImproved__(self, value):
 		if self.__experience.Value >= self.__experience.Max : 
 			self.__level.Value += math.trunc(value/3)

@@ -3,6 +3,7 @@
 	Current unit stats cannot be negative after update.
 '''
 import math
+from common.eventhandler import EventHandler
 
 class Setter():
 	def __init__(self, func, doc = None):
@@ -16,7 +17,7 @@ class BasicStat():
 	# Constructor
 	def __init__(self, value):
 		self.__value = value
-		self.__onUpdated = None
+		self.Updated = EventHandler()
 	
 	# Properties
 	@property
@@ -27,18 +28,20 @@ class BasicStat():
 	def Value(self, value):
 		self.SetValue(value)
 
-	@Setter
-	def Updated(self, value):
-		self.__onUpdated = value
-
 	# Methods
+
+	def __raiseUpdated__(self, value):
+		#self.Updated.Raise(value)
+		handler = self.Updated
+		if handler != None:
+			handler.Raise(value)
+
 	def GetValue(self):
 		return self.__value
 	
 	def SetValue(self, value):
 		self.__value = value
-		if self.__onUpdated != None:
-			self.__onUpdated(value)
+		self.__raiseUpdated__(value)
 
 	# Override
 	def __str__(self):
@@ -48,7 +51,7 @@ class UnitStat(BasicStat):
 	# Constructor
 	def __init__(self, value):
 		super().__init__(value)
-		self.__onImproved = None
+		self.Improved = EventHandler()
 		# modified of value
 		self.__modified = 0
 		# mask of value
@@ -84,15 +87,17 @@ class UnitStat(BasicStat):
 	def Max(self, value):
 		self.__max = value
 
-	@Setter
-	def Improved(self, value):
-		self.__onImproved = value
-
 	# Methods
+
+	def __raiseImproved__(self, value):
+		self.Improved.Raise(value)
+		#handler = self.Improved
+#		if handler != None:
+#			handler.Raise(value)
+
 	def Improve(self, value):
 		self.__modified = self.ImproveImp(value)
-		if self.__onImproved != None:
-			self.__onImproved(value)
+		self.__raiseImproved__(value)
 
 	def CalcImp(self, modified):
 		return super().GetValue() + modified
@@ -163,9 +168,9 @@ class UnitStats:
 		# TODO Add stats:
 		# % crit, hit, dodge and others
 		self.__level = Level(0)
-		self.__level.Updated  = self.__onLvlUpdated__
+		self.__level.Updated  += self.__onLvlUpdated__
 		self.__experience = Experience(0)
-		self.__experience.Improved = self.__onExpImproved__
+		self.__experience.Improved += self.__onExpImproved__
 		self.__health = Health(1)
 		self.__damage = Damage(1)
 		self.__critRate = CritRate(5)

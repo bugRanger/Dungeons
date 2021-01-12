@@ -76,7 +76,7 @@ class UnitStatsTest(unittest.TestCase):
 	def test_stat_improve(self):
 		# Arrage
 		self.__count = 0
-		self.__stat.Improved = self.__onIncCounter__
+		self.__stat.Improved += self.__onIncCounter__
 		# Act
 		self.__stat.Improve(1)
 		# Assert
@@ -86,7 +86,7 @@ class UnitStatsTest(unittest.TestCase):
 	def test_stat_update(self):
 		# Arrage
 		self.__count = 0
-		self.__stat.Updated = self.__onIncCounter__
+		self.__stat.Updated += self.__onIncCounter__
 		# Act
 		self.__stat.Value += 1
 		# Assert
@@ -202,6 +202,7 @@ class UnitStatsTest(unittest.TestCase):
 		self.assertEqual(stats.Experience.Value, 4)
 		self.assertEqual(stats.Experience.Max, 8)
 		self.assertEqual(stats.Level.Value, 2)
+		#stats.UpdateLevel.assert_called_with(2)
 
 if __name__ == '__main__':
 	unittest.main()

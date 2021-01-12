@@ -1,25 +1,28 @@
 from abc import ABC, abstractmethod
 
 from common.uid import Uid
-from common.gameobject import GameObject
 from common.enums.unitrace import UnitRace
 from common.unitstrategy import UnitStrategy
 from common.unitstats import UnitStats
 
-class GameUnit(GameObject):
+class GameUnit:
 	 # TODO Add UnitStats constructor param.
 	 # Constructor
-	def __init__(self, name : str,  desc : str, stats : UnitStats, race : UnitRace):
+	def __init__(self, name : str, stats : UnitStats, race : UnitRace):
 		self.__uid = Uid()
+		self.__name = name
 		self.__race = race
 		self.__stats = stats
 		self.__strategy = None
-		super().__init__(name, desc)
 	
 	# Property
 	@property
 	def Uid(self) -> Uid :
 		return self.__uid
+
+	@property
+	def Name(self):
+		return self.__name
 
 	@property
 	def Race(self) -> UnitRace :

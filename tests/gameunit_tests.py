@@ -9,22 +9,19 @@ class GameUnitTests(unittest.TestCase):
 		stats = UnitStats()
 		stats.Health.Value = 5
 		stats.Damage.Value = 5
-		self.__unit = GameUnit('unit', 'desc', stats, 
-			UnitRace.Gnoll)
+		self.__unit = GameUnit('unit', stats, UnitRace.Gnoll)
 		
 	def test_unit_init(self):
 		# arrage
 		race = UnitRace.Gnoll
 		name = 'unit'
-		desc = 'desc'
 		stats = UnitStats()
 		stats.Health.Value = 5
 		stats.Damage.Value = 5
 		# act
-		unit = GameUnit(name, desc, stats, race)
+		unit = GameUnit(name, stats, race)
 		# assert
 		self.assertEqual(name, unit.Name)
-		self.assertEqual(desc, unit.Desc)
 		self.assertEqual(stats, unit.Stats)
 		self.assertEqual(race, unit.Race)
 	

@@ -12,6 +12,6 @@ class GnollStats(UnitStats):
 		self.Damage.Value = value + 1
 
 class Gnoll(GameUnit):
-	def __init__(self, name : str, desc: str = None, stats: UnitStats = None):
-		super().__init__(name, desc, stats if stats is not None else GnollStats(), UnitRace.Gnoll)
+	def __init__(self, name : str, stats: UnitStats = None):
+		super().__init__(name, stats if stats is not None else GnollStats(), UnitRace.Gnoll)
 	# TODO Add specific behaviors
